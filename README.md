@@ -37,10 +37,9 @@ The following table shows a list of commands which can be used. Further details 
 | Command | Description |
 |---------|-------------|
 |```LOGIN <username>``` | Used to attach a username to the opened TCP/IP session.|
-|```LIST``` | Used to list all clients which are connected to the server. Will not show clients who have not yet logged in. |
-|```LIST-ALL``` | Shows all clients which are connected to the server, including those who have not yet logged in. |
-|```BLOCK <username>``` | Blocks a username from sending love messages to the calling client. |
+|```LIST``` | Used to list all clients which are connected to the server. |
 |```MESSAGE <username>``` | Sends a message to another user on the server. |
+|```BLOCK <username>``` | Blocks a username from sending love messages to the calling client. |
 |```XOXOXO``` | Indicates the end of a message. |
 
 
