@@ -7,6 +7,8 @@ The project implements a fictional "Love Letter" Application Layer protocol, whi
 
 The user can use an ASCII client (such as telnet or [PuTTY Telnet](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)) and communicate with the server, using the defined protocol.
 
+Students are encouraged to run the code locally and experiment with how it works, there are snippets throughout the codebase where improvements could be made. Submit a Pull Request for new additions.
+
 ## Getting Started
 To get started, run `main.py` within python 3.8 or greater, the server should start.
 ```bash
