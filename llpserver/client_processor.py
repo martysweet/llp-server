@@ -18,7 +18,10 @@ class ClientProcessor:
         self.message_expecting_data = False
         self.message_recipient = ""
         self.message_data = ""
-        connection.send(str.encode('Welcome to the Love Letter Server\n'))
+
+        payload = 'Welcome to the Love Letter Server\n' \
+                  'Supported commands are: LOGIN <user>, LOGOUT, LIST, MESSAGE <user>\n\n'
+        self.send('OK', payload)
 
         # Activity: What happens if a client disconnects without running LOGOUT?
         # What happens to the socket?
@@ -95,7 +98,6 @@ class ClientProcessor:
             self.message_expecting_data = False
             success, msg = self.server.send_message(self.username, self.message_recipient, self.message_data)
             self.send(success, msg)
-
 
     def handle_logout(self):
         self.listen = False

@@ -1,9 +1,9 @@
-import select
 import socket
 import logging
 from _thread import *
 
 from .client_processor import ClientProcessor
+from netifaces import interfaces, ifaddresses, AF_INET
 
 
 # Handle the incoming connection
@@ -24,8 +24,9 @@ class LLPServer:
         self.core_server = CoreServer()
 
     def __enter__(self):
+        logging.info("Starting listening on port 8888")
         self._sock.bind(('0.0.0.0', 8888))
-        self._sock.listen(5)
+        self._sock.listen(30)
         return self
 
     def __exit__(self, exception_type, exception_value, traceback):
@@ -35,8 +36,18 @@ class LLPServer:
         connection, address = self._sock.accept()
         start_new_thread(threaded_client, (connection, address, self.core_server))
 
+    # TODO: Task - Improve this to show
+    # Interfacename: IP IP IP
+    # Hide empty interfaces
+    def log_ipv4_addresses(self):
+        for ifaceName in interfaces():
+            addresses = [i['addr'] for i in ifaddresses(ifaceName).setdefault(AF_INET, [{'addr':'No IP addr'}] )]
+            logging.info(" ".join(addresses))
+        return addresses
+
     def listen_for_traffic(self):
         logging.info("Listening for connections")
+        self.log_ipv4_addresses()
         while True:
             connection, address = self._sock.accept()
             start_new_thread(threaded_client, (connection, address, self.core_server))

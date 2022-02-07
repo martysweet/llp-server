@@ -5,6 +5,7 @@ class CoreServer:
     """
     Responsible for core logic. No data formatting should occur here.
     Activity: It might be nice to move error messages out into constants
+    Activity: Is there any need for multithreaded consideration here?
     """
     def __init__(self):
         self.logger = logging.getLogger("LLP Server Started")
